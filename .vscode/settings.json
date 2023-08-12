@@ -1,0 +1,14 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/yugrp01/expoc_ws/devel/lib/python3/dist-packages",
+        "/home/yugrp01/main_ws/devel/lib/python3/dist-packages",
+        "/home/yugrp01/3rd_party/carto_ws/install_isolated/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/yugrp01/expoc_ws/devel/lib/python3/dist-packages",
+        "/home/yugrp01/main_ws/devel/lib/python3/dist-packages",
+        "/home/yugrp01/3rd_party/carto_ws/install_isolated/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ]
+}

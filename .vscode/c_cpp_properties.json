@@ -1,0 +1,28 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/yugrp01/expoc_ws/devel/include/**",
+        "/home/yugrp01/main_ws/devel/include/**",
+        "/home/yugrp01/3rd_party/carto_ws/install_isolated/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/yugrp01/expoc_ws/src/EXPOC/include/**",
+        "/home/yugrp01/expoc_ws/src/FAST_LIO/include/**",
+        "/home/yugrp01/expoc_ws/src/GCOPTER/include/**",
+        "/home/yugrp01/main_ws/src/livox_laser_simulation/include/**",
+        "/home/yugrp01/main_ws/src/tdle/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

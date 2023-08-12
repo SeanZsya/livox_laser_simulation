@@ -1,31 +1,14 @@
-# Livox Laser Simulation
+# Livox Laser Simulation (For Gazebo11)
 A package to provide plug-in for [Livox Series LiDAR](https://www.livoxtech.com).
 
 ## Requirements
-- ROS(=Melodic)
-- Gazebo (= 9.x, http://gazebosim.org/)
-- Ubuntu(=18.04)
-
-## Results
-- avia
-
-![](resources/avia.gif)
-- mid40
-
-![](resources/mid40.gif)
-- mid70
-
-![](resources/mid70.gif)
-- tele
-
-![](resources/tele.gif)
-- horizon
-
-![](resources/horizon.gif)
+- ROS(=Noetic)
+- Gazebo (= 11.x, http://gazebosim.org/)
+- Ubuntu(=20.04)
 
 ## Usage
 
-> Note that the version of gazebo in main branch is gazebo 9.18. If you use gazebo 7, checkout to "gazebo7" branch.
+> Note that the version of gazebo in main branch is gazebo 11.12.
 
 Before you write your urdf file by using this plugin, catkin_make/catkin build is needed.
 

@@ -13,6 +13,9 @@
 #include <gazebo/transport/Node.hh>
 #include "livox_laser_simulation/csv_reader.hpp"
 #include "livox_laser_simulation/livox_ode_multiray_shape.h"
+// #include <livox_ros_driver/CustomPoint.h>
+// #include <livox_ros_driver/CustomMsg.h>
+// #include <chrono>
 
 namespace gazebo {
 
@@ -56,7 +59,9 @@ void LivoxPointsPlugin::Load(gazebo::sensors::SensorPtr _parent, sdf::ElementPtr
     ROS_INFO_STREAM("ros topic name:" << curr_scan_topic);
     ros::init(argc, argv, curr_scan_topic);
     rosNode.reset(new ros::NodeHandle);
+    
     rosPointPub = rosNode->advertise<sensor_msgs::PointCloud>(curr_scan_topic, 5);
+    // rosPointPub = rosNode->advertise<livox_ros_driver::CustomMsg>(curr_scan_topic, 5);
 
     raySensor = _parent;
     auto sensor_pose = raySensor->Pose();
@@ -126,6 +131,8 @@ void LivoxPointsPlugin::OnNewLaserScans() {
         auto verticle_min = VerticalAngleMin().Radian();
         auto verticle_incre = VerticalAngleResolution();
 
+
+        //for pointcloud msg
         sensor_msgs::PointCloud scan_point;
         scan_point.header.stamp = ros::Time::now();
         scan_point.header.frame_id = raySensor->Name();
@@ -169,6 +176,43 @@ void LivoxPointsPlugin::OnNewLaserScans() {
             //    //                          pair.second.azimuth);
             //}
         }
+
+
+        // //for livox custom msg
+        // livox_ros_driver::CustomMsg scan_point;
+        // scan_point.header.stamp = ros::Time::now();
+        // scan_point.header.frame_id = raySensor->Name();
+        // auto &scan_points = scan_point.points;
+
+        // std::chrono::high_resolution_clock::time_point start_time = std::chrono::high_resolution_clock::now();
+        // for (auto &pair : points_pair) {
+        //         auto range = rayShape->GetRange(pair.first);
+        //         auto intensity = rayShape->GetRetro(pair.first);
+        //         if (range >= maxDist) {
+        //             range = 0;
+        //         } else if (range <= minDist) {
+        //             range = 0;
+        //         }
+
+        //         auto rotate_info = pair.second;
+        //         ignition::math::Quaterniond ray;
+        //         ray.Euler(ignition::math::Vector3d(0.0, rotate_info.zenith, rotate_info.azimuth));
+
+        //         auto axis = ray * ignition::math::Vector3d(1.0, 0.0, 0.0);
+        //         auto point = range * axis;
+        //         scan_points.emplace_back();
+        //         scan_points.back().x = point.X();
+        //         scan_points.back().y = point.Y();
+        //         scan_points.back().z = point.Z();
+        //         scan_points.back().reflectivity = intensity;
+        //         scan_points.back().tag = 16; // TODO
+        //         std::chrono::high_resolution_clock::time_point end_time = std::chrono::high_resolution_clock::now();
+        //         int elapsed_time = std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time).count();
+        //         scan_points.back().offset_time = elapsed_time;
+        // }
+        // scan_point.point_num = scan_point.points.size();
+        
+
         if (scanPub && scanPub->HasConnections()) scanPub->Publish(laserMsg);
         rosPointPub.publish(scan_point);
         ros::spinOnce();
